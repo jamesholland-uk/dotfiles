@@ -1,119 +1,106 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/jholland/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="jamoi"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-# .zshrc
-# Ripped off a lot from gerlingguy/dotfiles and mrichardson03/dotfiles
-#
-
-# Pull in local shell config if it's present.
-#if [[ -f $HOME/.zshrc.local ]]; then
-#  source $HOME/.zshrc.local
-#fi
-
-# Enable colors on the cli.
-unset LSCOLORS
-export CLICOLOR=1
-export CLICOLOR_FORCE=1
-
-# Nice looking prompt.
-export PS1="%F{green}● %*%F{blue} %3~ %F{white}$ "
-
-# Custom path with extra locations.
-#   - Add ~/Library/Python/3.8/bin for stuff installed via `pip install --user`.
-#   - Correct Homebrew path on M1 or Intel.
-#ARCH=$(/usr/bin/arch)
-#if [[ $ARCH == "arm64" ]]; then
-#    PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-#else
-#    PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-#fi
-#export PATH="$HOME/Library/Python/3.8/bin:$HOME/bin:$PATH"
-
-# Enable plugins.
-#plugins=(git brew history kubectl)
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls="ls -lasG"
 
 # Turn on shell autocomplete.
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-###############################################################################
-# Aliases                                                                     #
-###############################################################################
-
-alias ls="ls -lasG"
-
-#alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-#alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
-#alias commit-types="cat ~/.dotfiles/commit-types"
-#alias ct="cat ~/.dotfiles/commit-types"
-
-###############################################################################
-# Python                                                                      #
-###############################################################################
-
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
- 
-# commands to override pip restriction above.
-# use `gpip` or `gpip3` to force installation of
-# a package in the global python environment
-# Never do this! It is just an escape hatch.
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip3 "$@"
-}
-
-# Add pyenv to use Python versions that aren't in Homebrew.
-if [[ -v pyenv ]]; then
-  eval "$(pyenv init -)"
-fi
-
-# Always create pipenv virtualenvs in project.
-export PIPENV_VENV_IN_PROJECT=1
-
-###############################################################################
-# Vagrant / Packer                                                            #
-###############################################################################
-
-# Make Vagrant use Vmware by default.
-#export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
-
-# Put all Vagrant VMs in one directory for easy exclusion from Time Machine.
-#export VAGRANT_VMWARE_CLONE_DIRECTORY=$HOME/.vagrantvms 
-
-# Move Packer cache dir out of individual project directories for easy exclusion from Time Machine.
-#export PACKER_CACHE_DIR=$HOME/.packer_cache
-
-###############################################################################
-# ZSH Functions                                                               #
-###############################################################################
-
-# Delete a given line number in the known_hosts file.
-#knownrm() {
-#  re='^[0-9]+$'
-#  if ! [[ $1 =~ $re ]] ; then
-#    echo "error: line number missing" >&2;
-#  else
-#    sed -i '' "$1d" ~/.ssh/known_hosts
-#  fi
-#}
-
-# Git upstream branch syncer.
-# Usage: gsync master (checks out master, pull upstream, push origin).
-function gsync() {
- if [[ ! "$1" ]] ; then
-     echo "You must supply a branch."
-     return 0
- fi
-
- BRANCHES=$(git branch --list $1)
- if [ ! "$BRANCHES" ] ; then
-    echo "Branch $1 does not exist."
-    return 0
- fi
-
- git checkout "$1" && \
- git pull upstream "$1" && \
- git push origin "$1"
-}
