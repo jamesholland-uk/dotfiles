@@ -1,0 +1,19 @@
+# Install Docker
+# https://docs.docker.com/engine/install/ubuntu/
+
+# Internet Monitoring stack
+git clone https://github.com/maxandersen/internet-monitoring
+cd internet-monitoring/prometheus
+sudo docker-compose up
+vi internet-monitoring/prometheus/pinghosts.yaml
+======
+- targets:  # url;humanname;routing;switch
+    - https://www.google.com/;google.com;external;internetbox
+    - https://github.com/;github.com;external;internetbox
+    - https://www.jamesholland.me.uk;jamesholland.me.uk;external;internetbox
+    - https://gp.jamoi.co.uk;gp.jamoi.co.uk;local;internetbox
+======
+
+# Speedtest for intra-LAN connectivity and performance testing; pull then run deteched forever
+sudo docker pull adolfintel/speedtest
+sudo docker run -d -restart always -e MODE=standalone -p 80:80 -it adolfintel/speedtest
